@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {WebSpeechService} from './web-speech.service';
+import {AnnyangService} from '../annyang/annyang.service';
 
 
 
@@ -9,7 +9,7 @@ import {WebSpeechService} from './web-speech.service';
 })
 export class WebSpeechComponent {
 
-  constructor(private webSpeechService:WebSpeechService) {
+  constructor(private webSpeechService:AnnyangService) {
     this.webSpeechService.result$.subscribe(console.log)
   }
 
@@ -18,6 +18,6 @@ export class WebSpeechComponent {
   }
 
   public stop(event) {
-    this.webSpeechService.stop();
+    // this.webSpeechService.stop();
   }
 }
