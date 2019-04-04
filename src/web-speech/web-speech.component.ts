@@ -1,23 +1,23 @@
 import {Component} from '@angular/core';
-import {AnnyangService} from '../annyang/annyang.service';
-
-
+import {ArtyomService} from '../artyom/artyom.service';
 
 @Component({
-  selector: 'yakke-web-speech',
+  selector: 'app-web-speech',
   templateUrl: './web-speech.component.html'
 })
 export class WebSpeechComponent {
 
-  constructor(private webSpeechService:AnnyangService) {
-    this.webSpeechService.result$.subscribe(console.log)
-  }
+  constructor(private webSpeechService: ArtyomService) {}
 
   public start(event) {
     this.webSpeechService.start();
   }
 
+  public startQuick() {
+    this.webSpeechService.startQuick();
+  }
+
   public stop(event) {
-    // this.webSpeechService.stop();
+    this.webSpeechService.stop();
   }
 }

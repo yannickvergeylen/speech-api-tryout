@@ -1,0 +1,22 @@
+<div style="height: 100%;display: flex;justify-content: center;align-content: center">
+  {{visibility$|async|json}}
+  <div class="img-container" *ngIf="(visibility$|async)?.showYannick">
+    <img src="../assets/yannick.png" height="100%">
+  </div>
+  <div class="img-container" *ngIf="(visibility$|async)?.showOrdina">
+    <img src="../assets/Oridna.jpg" height="100%">
+  </div>
+  <div class="img-container" *ngIf="(visibility$|async)?.showSintNiklaas">
+    <img src="../assets/sint-niklaas.jpeg" height="100%">
+  </div>
+  <div class="img-container" *ngIf="(visibility$|async)?.showJudith">
+    <img src="../assets/yannick_judith.png">
+  </div>
+  <div class="img-container" *ngIf="(visibility$|async)?.showCat">
+    <img src="../assets/cat.png">
+  </div>
+  <div class="img-container" *ngIf="(visibility$|async)?.showTinto">
+    <img src="../assets/tinto.jpg">
+  </div>
+</div>
+
