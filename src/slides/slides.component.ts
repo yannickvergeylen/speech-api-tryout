@@ -15,63 +15,22 @@ export class SlidesComponent {
   constructor(private webSpeechService: ArtyomService, private cdr: ChangeDetectorRef) {
     this.webSpeechService.result$
       .pipe(
-        tap(command => command === 'SHOW_YANNICK' && this.showYannick()),
-        tap(command => command === 'SHOW_ORDINA' && this.showOrdina()),
-        tap(command => command === 'SHOW_SINT_NIKLAAS' && this.showSintNiklaas()),
-        tap(command => command === 'SHOW_JUDITH' && this.showJudith()),
-        tap(command => command === 'SHOW_KAT' && this.showCat()),
-        tap(command => command === 'SHOW_TINTO' && this.showTinto()),
-        tap(command => command === 'TINTO_ZIT' && this.showTintoZit()),
-        tap(command => command === 'TINTO_HIGH_FIVE' && this.showTintoHighFive())
+        tap(command => command === 'SHOW_YANNICK' && this.show('Yannick')),
+        tap(command => command === 'SHOW_ORDINA' && this.show('Ordina')),
+        tap(command => command === 'SHOW_SINT-NIKLAAS' && this.show('SintNiklaas')),
+        tap(command => command === 'SHOW_JUDITH' && this.show('Judith')),
+        tap(command => command === 'SHOW_CAT' && this.show('Cat')),
+        tap(command => command === 'SHOW_TINTO' && this.show('Tinto')),
+        tap(command => command === 'SHOW_ZIT' && this.show('TintoZit')),
+        tap(command => command === 'SHOW_HIGH_FIVE' && this.show('TintoHighFive')),
+        tap(command => command === 'SHOW_ROLL' && this.show('TintoRoll'))
       )
       .subscribe();
   }
 
-  private showYannick() {
+  private show(key) {
     this.hideAll();
-    this.visibility$.next({showYannick: true});
-    this.detectChanges();
-  }
-
-  private showOrdina() {
-    this.hideAll();
-    this.visibility$.next({showOrdina: true});
-    this.detectChanges();
-  }
-
-  private showSintNiklaas() {
-    this.hideAll();
-    this.visibility$.next({showSintNiklaas: true});
-    this.detectChanges();
-  }
-
-  private showJudith() {
-    this.hideAll();
-    this.visibility$.next({showJudith: true});
-    this.detectChanges();
-  }
-
-  private showCat() {
-    this.hideAll();
-    this.visibility$.next({showCat: true, showJudith: true});
-    this.detectChanges();
-  }
-
-  private showTinto() {
-    this.hideAll();
-    this.visibility$.next({showTinto: true});
-    this.detectChanges();
-  }
-
-  private showTintoZit() {
-    this.hideAll();
-    this.visibility$.next({showTintoZit: true});
-    this.detectChanges();
-  }
-
-  private showTintoHighFive() {
-    this.hideAll();
-    this.visibility$.next({showTintoHighFive: true});
+    this.visibility$.next({[`show${key}`]: true});
     this.detectChanges();
   }
 
@@ -93,4 +52,5 @@ interface Visibilities {
   showTinto?: boolean;
   showTintoZit?: boolean;
   showTintoHighFive?: boolean;
+  showTintoRoll?: boolean;
 }

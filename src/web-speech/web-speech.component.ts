@@ -13,7 +13,7 @@ export class WebSpeechComponent {
     this.webSpeechService.start();
   }
 
-  public startQuick() {
+  public startQuick(event) {
     this.webSpeechService.startQuick();
   }
 

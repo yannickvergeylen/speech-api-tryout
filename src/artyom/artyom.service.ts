@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/index';
 import Artyom from 'artyom.js/build/artyom.js';
 
-// interface IWindow extends Window {
-//   annyang: any & { addCommands: () => {}, init: () => {} };
-// }
+type Command = 'SHOW_YANNICK' | 'SHOW_ORDINA' | 'SHOW_SINT-NIKLAAS' | 'SHOW_JUDITH'
+  | 'SHOW_CAT' | 'SHOW_TINTO' | 'SHOW_ZIT' | 'SHOW_HIGH_FIVE' | 'SHOW_ROLL';
 
 @Injectable()
 export class ArtyomService {
@@ -14,7 +13,7 @@ export class ArtyomService {
   }
 
   private artyom: any;
-  public result$ = new Subject();
+  public result$ = new Subject<Command>();
 
   private normalCommands = [
     {
@@ -40,11 +39,7 @@ export class ArtyomService {
   private quickCommands = [
     {
       indexes: ['Sint-Niklaas'],
-      action: () => this.emitTheResult('SHOW_SINT_NIKLAAS')
-    },
-    {
-      indexes: ['Appartement'],
-      action: () => this.emitTheResult('APPARTEMENT')
+      action: () => this.emitTheResult('SHOW_SINT-NIKLAAS')
     },
     {
       indexes: ['vriendin'],
@@ -52,11 +47,7 @@ export class ArtyomService {
     },
     {
       indexes: ['kat'],
-      action: () => this.emitTheResult('SHOW_KAT')
-    },
-    {
-      indexes: ['honden'],
-      action: () => this.emitTheResult('SHOW_HOND')
+      action: () => this.emitTheResult('SHOW_CAT')
     },
     {
       indexes: ['Tinto'],
@@ -67,21 +58,13 @@ export class ArtyomService {
       action: () => this.emitTheResult('SHOW_ZIT')
     },
     {
-      indexes: ['down'],
-      action: () => this.emitTheResult('SHOW_DOWN')
-    },
-    {
       indexes: ['high five'],
       action: () => this.emitTheResult('SHOW_HIGH_FIVE')
     },
     {
-      indexes: ['jump'],
-      action: () => this.emitTheResult('SHOW_JUMP')
-    },
-    {
       indexes: ['roll'],
       action: () => this.emitTheResult('SHOW_ROLL')
-    },
+    }
   ];
 
   public start() {
@@ -122,7 +105,7 @@ export class ArtyomService {
     this.artyom.fatality();
   }
 
-  private emitTheResult(event) {
+  private emitTheResult(event: Command) {
     this.result$.next(event);
   }
 }
